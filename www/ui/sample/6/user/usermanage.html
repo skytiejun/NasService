@@ -1,0 +1,208 @@
+<?php
+	include_once('./_common.php');
+
+/*$sshclient = new sshclient();
+
+$sshclient->exec('sed -i "s/test33/test22/g" /etc/passwd'); //지정이름 바꾸기
+
+exit;*/
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Unicorn Admin</title>
+		<meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="../css/uniform.css" />
+		<link rel="stylesheet" href="../css/select2.css" />
+		<link rel="stylesheet" href="../css/unicorn.main.css" />
+		<link rel="stylesheet" href="../css/unicorn.grey.css" class="skin-color" />	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<body>
+		
+		
+		<div id="header">
+			<h1><a href="../dashboard.html">Unicorn Admin</a></h1>		
+		</div>
+		
+		<div id="search">
+			<input type="text" placeholder="Search here..." /><button type="submit" class="tip-right" title="Search"><i class="icon-search icon-white"></i></button>
+		</div>
+		<div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+                <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">Profile</span></a></li>
+                <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">Messages</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="sAdd" title="" href="#">new message</a></li>
+                        <li><a class="sInbox" title="" href="#">inbox</a></li>
+                        <li><a class="sOutbox" title="" href="#">outbox</a></li>
+                        <li><a class="sTrash" title="" href="#">trash</a></li>
+                    </ul>
+                </li>
+                <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">Settings</span></a></li>
+                <li class="btn btn-inverse"><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+            </ul>
+        </div>
+
+		<div id="sidebar">
+			<a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a>
+			<ul>
+				<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>시스템 정보 및 마법사</span> <span class="label">2</span></a>
+					<ul>
+						<li><a href="index.html">시스템 정보</a></li>
+						<li><a href="form-validation.html">시스템 설정 마법사</a></li>
+					</ul>
+				</li>
+				<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>폴더/사용자 관리</span> <span class="label">2</span></a>
+					<ul>
+						<li><a href="form-common.html">폴더 관리</a></li>
+						<li><a href="usermanage.html">사용자 관리</a></li>
+						<li><a href="form-validation.html">ID 등록 요청자 관리</a></li>
+					</ul>
+				</li>
+				<li class="active"><a href="indexs.html"><i class="icon icon-home"></i> <span>Dashboard</span></a></li>
+				<li class="submenu">
+					<a href="#"><i class="icon icon-th-list"></i> <span>Form elements</span> <span class="label">3</span></a>
+					<ul>
+						<li><a href="form-common.html">Common elements</a></li>
+						<li><a href="form-validation.html">Validation</a></li>
+						<li><a href="form-wizard.html">Wizard</a></li>
+					</ul>
+				</li>
+				<li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+				<li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Interface elements</span></a></li>
+				<li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
+				<li><a href="grid.html"><i class="icon icon-th-list"></i> <span>Grid Layout</span></a></li>
+				<li class="submenu">
+					<a href="#"><i class="icon icon-file"></i> <span>Sample pages</span> <span class="label">4</span></a>
+					<ul>
+						<li><a href="invoice.html">Invoice</a></li>
+						<li><a href="chat.html">Support chat</a></li>
+						<li><a href="calendar.html">Calendar</a></li>
+						<li><a href="gallery.html">Gallery</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="charts.html"><i class="icon icon-signal"></i> <span>Charts &amp; graphs</span></a>
+				</li>
+				<li>
+					<a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
+				</li>
+			</ul>
+		
+		</div>
+		
+		<div id="style-switcher">
+			<i class="icon-arrow-left icon-white"></i>
+			<span>Style:</span>
+			<a href="#grey" style="background-color: #555555;border-color: #aaaaaa;"></a>
+			<a href="#blue" style="background-color: #2D2F57;"></a>
+			<a href="#red" style="background-color: #673232;"></a>
+		</div>
+		
+		<div id="content">
+			<div id="content-header">
+				<h1>사용자 관리</h1>
+				<div class="btn-group">
+					<a class="btn btn-large tip-bottom" title="Manage Files"><i class="icon-file"></i></a>
+					<a class="btn btn-large tip-bottom" title="Manage Users"><i class="icon-user"></i></a>
+					<a class="btn btn-large tip-bottom" title="Manage Comments"><i class="icon-comment"></i><span class="label label-important">5</span></a>
+					<a class="btn btn-large tip-bottom" title="Manage Orders"><i class="icon-shopping-cart"></i></a>
+				</div>
+			</div>
+			<div id="breadcrumb">
+				<a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 홈</a>
+				<a href="#" class="current">사용자 관리</a>
+			</div>
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<form id="useredit" method="post">
+						<input type="hidden" name="mode" value="del">
+						<!--사용자 리스트-->
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon">
+									<i class="icon-user"></i>
+								</span>
+								<h5>사용자 목록</h5>
+								<span style="float:right;margin:6px 15px 0 0;"><a href="useradd.html" class="btn btn-success btn-mini">사용자 추가</a><span style="padding-left:7px"></span><a href="#" id="add-event-submit" class="btn btn-mini" onclick="save('u')">편집</a>
+								<a href="#" id="add-event-submit" class="btn btn-danger btn-mini" onclick="save('d')">삭제</a>
+											<select id="group" onchange="return showGroup('d')" >
+												<option value="0">그룹</option>
+												<option value="bind">bind</option>
+												<option value="users">users</option>
+											</select>
+								</span>
+							</div>
+							<div class="widget-content">
+							<span id='group_list'>
+								<table class="table table-bordered table-striped with-check">
+										<thead>
+											<tr>
+												<th style="width:5%"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox" /></th>
+												<th style="width:10%">아이디</th>
+												<th style="width:40%">설명</th>
+												<th style="width:35%">이메일</th>
+												<th style="width:10%">상태</th>
+											</tr>
+										</thead>
+										<tbody>
+										
+										<?
+											$user = $AnySql->getUser();
+
+											foreach($user as $list){
+										?>
+											<tr>
+												<td><input type="checkbox" id="event-user-list" name="userlist[]" value="<?=$list[US_ID]?>"/></td>
+												<td><?=$list[US_ID]?></td>
+												<td><?=$list[US_INTRO]?$list[US_INTRO]:"-"?></td>
+												<td><?=$list[US_EMAIL]?></td>
+												<td><?=$list[US_STATUS]?></td>
+											</tr>
+											<?
+											}
+											?>
+										</tbody>
+									</table>
+								</span>
+								<table border="0" cellpadding="2">
+								<tr>
+									<td><a href="useradd.html" class="btn btn-mini">사용자 추가</a></td>
+									<td><a href="#" id="add-event-submit" class="btn btn-mini" onclick="save('u')">편집</a></td>
+									<td><a href="#" id="add-event-submit" class="btn btn-danger btn-mini" onclick="save('d')">삭제</a></td>
+								</tr>
+								</table>
+								
+							</div>
+							
+						<!--/사용자 리스트-->
+						</form>
+					</div>
+				</div>
+				
+				<div class="row-fluid">
+					<div id="footer" class="span12">
+						2014 &copy; Nas Service <a href="https://wrapbootstrap.com/user/diablo9983">Smile Serv</a>
+					</div>
+				</div>
+			</div>
+		</div>
+			<script src="./js/usermanage.js"></script>
+            <script src="../js/jquery.min.js"></script>
+            <script src="../js/jquery.ui.custom.js"></script>
+            <script src="../js/bootstrap.min.js"></script>
+            <script src="../js/jquery.uniform.js"></script>
+            <script src="../js/select2.min.js"></script>
+            <script src="../js/jquery.dataTables.min.js"></script>
+            <script src="../js/unicorn.js"></script>
+            <script src="../js/unicorn.tables.js"></script>
+			<script type="text/javascript" src="./js/users.jquery.js"></script>
+	</body>
+</html>
